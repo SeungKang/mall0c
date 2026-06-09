@@ -17,6 +17,7 @@ int main()
 
   printf("writing to chunk\n");
   ((char *)ptr)[0] = 'A';
+  printf("wrote to chunk\n");
 
   return 0;
 }
