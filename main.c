@@ -23,6 +23,7 @@ int main()
   size = malloc_usable_size(ptr);
 #elif __linux__
   #include <malloc.h>
+  printf("malloc usable size for linux\n")
   size = malloc_usable_size(ptr);
 #endif
 
