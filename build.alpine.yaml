@@ -1,0 +1,9 @@
+# this is the builds.sr.ht manifest
+image: alpine/3.23
+sources:
+  - https://github.com/SeungKang/mall0c 
+tasks:
+  - build: |
+      cd mall0c
+      gcc main.c
+      ./a.out

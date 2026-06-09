@@ -23,12 +23,12 @@ int main()
 #ifdef __APPLE__
   #include <malloc/malloc.h>
   size =  malloc_size(ptr);
-#elif __FreeBSD__
-  #include <malloc_np.h>
-  size = malloc_usable_size(ptr);
-#elif __NetBSD__
-  #include <malloc_np.h>
-  size = malloc_usable_size(ptr);
+//#elif __FreeBSD__
+//  #include <malloc_np.h>
+//  size = malloc_usable_size(ptr);
+//#elif __NetBSD__
+//  #include <malloc_np.h>
+//  size = malloc_usable_size(ptr);
 #elif __linux__
   #include <malloc.h>
   printf("malloc usable size for linux\n");

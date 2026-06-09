@@ -1,0 +1,11 @@
+# this is the builds.sr.ht manifest
+image: netbsd/10.x
+sources:
+  - https://github.com/SeungKang/mall0c 
+packages:
+  - clang
+tasks:
+  - build: |
+      cd mall0c
+      clang main.c
+      ./a.out
