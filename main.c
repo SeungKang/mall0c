@@ -1,5 +1,16 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
+
+void read_16_bytes(void *ptr) {
+    // Cast to an 8-bit unsigned integer pointer
+    uint8_t *byte_ptr = (uint8_t *)ptr;
+
+    // Read and print each byte
+    for (int i = 0; i < 16; i++) {
+        printf("Byte %d: 0x%02X\n", i, byte_ptr[i]);
+    }
+}
 
 int main()
 {
@@ -34,6 +45,8 @@ int main()
   printf("writing to chunk\n");
   ((char *)ptr)[0] = 'A';
   printf("wrote to chunk\n");
+
+  read_16_bytes(ptr);
 
   return 0;
 }
