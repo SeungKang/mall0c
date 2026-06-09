@@ -15,5 +15,8 @@ int main()
   printf("allocated size is %zu\n", size);
 #endif
 
+  printf("writing to chunk\n");
+  ((char *)ptr)[0] = 'A';
+
   return 0;
 }
