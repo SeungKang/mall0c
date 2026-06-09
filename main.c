@@ -26,9 +26,6 @@ int main()
 #elif __FreeBSD__
   #include <malloc_np.h>
   size = malloc_usable_size(ptr);
-#elif __OpenBSD__
-  #include <malloc_np.h>
-  size = malloc_usable_size(ptr);
 #elif __NetBSD__
   #include <malloc_np.h>
   size = malloc_usable_size(ptr);
