@@ -7,6 +7,7 @@
 
 int main()
 {
+  setbuf(stdout, 0);
   void *ptr = malloc(0);
   printf("ptr is %p\n", ptr);
 
