@@ -38,9 +38,7 @@ int main()
   size = malloc_usable_size(ptr);
 #endif
 
-  if (size != 0) {
-    printf("allocated size is %zu\n", size);
-  }
+  printf("allocated size is %zu\n", size);
 
   printf("writing to chunk\n");
   ((char *)ptr)[0] = 'A';
