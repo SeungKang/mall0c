@@ -1,0 +1,37 @@
+name: build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read 
+
+jobs:
+  build-macos:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: build + run + vmmap
+        id: build
+        shell: bash
+        run: |
+          clang main.c
+          ./a.out | (read pid && vmmap "$pid"; kill "$pid")
+
+  build-windows:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: Set up MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: build + run + cdb
+        shell: bash
+        run: |
+          cl -Fe:main.exe main.c
+          cdb="/c/Program Files (x86)/Windows Kits/10/Debuggers/x64/cdb.exe"
+          ./main.exe | (read pid && "$cdb" -p "$pid" -c "!address; q")
