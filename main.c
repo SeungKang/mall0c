@@ -1,7 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
-#include <unistd.h>
+
+#ifdef _WIN32
+  #include <process.h>
+#else
+  #include <unistd.h>
+#endif
 
 #ifdef __APPLE__
   #include <malloc/malloc.h>
@@ -67,10 +72,19 @@ int main()
 
   //read_16_bytes(ptr);
 
-  printf("%d\n",getpid());
+#ifdef _WIN32
+  print("%d\n", _getpid());
+#else
+  printf("%d\n", getpid());
+#endif
 
   fprintf(stderr,"pausing...");
+
+#ifdef _WIN32
+  getchar();
+#else
   pause();
+#endif
 
   return 0;
 }
