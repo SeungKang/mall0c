@@ -6,4 +6,4 @@ tasks:
   - build: |
       cd mall0c
       clang main.c
-      ./a.out
+      ./a.out | ( read pid && procstat vm "$pid"; kill "$pid" )
