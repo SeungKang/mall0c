@@ -81,7 +81,7 @@ int main()
   fprintf(stderr,"pausing...");
 
 #ifdef _WIN32
-  getchar();
+  Sleep(INFINITE);
 #else
   pause();
 #endif
