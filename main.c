@@ -73,7 +73,7 @@ int main()
   //read_16_bytes(ptr);
 
 #ifdef _WIN32
-  print("%d\n", _getpid());
+  printf("%d\n", _getpid());
 #else
   printf("%d\n", getpid());
 #endif
