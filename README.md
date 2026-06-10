@@ -27,6 +27,7 @@
 - returns valid chunk pointer
 - wrote to chunk
 - could not get malloc useable size
+- needed to separate the def import to use malloc_useable_size and it came back as 8
 
 ## netbsd 10.x
 
