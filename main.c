@@ -2,6 +2,18 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#ifdef __APPLE__
+  #include <malloc/malloc.h>
+#endif
+
+#ifdef __FreeBSD__
+  #include <malloc_np.h>
+#endif
+
+#ifdef __linux__
+  #include <malloc.h>
+#endif
+
 void read_16_bytes(void *ptr) {
     // Cast to an 8-bit unsigned integer pointer
     uint8_t *byte_ptr = (uint8_t *)ptr;
@@ -15,23 +27,34 @@ void read_16_bytes(void *ptr) {
 int main()
 {
   setbuf(stdout, 0);
-  void *ptr = malloc(0);
-  printf("ptr is %p\n", ptr);
+
+  void *ptr;
+  ptr = malloc(10);
+  printf("malloc(10) ptr is %p\n", ptr);
+
+  ptr = malloc(0);
+  printf("malloc(0) ptr is %p\n", ptr);
+
+  ptr = malloc(10);
+  printf("malloc(10) ptr is %p\n", ptr);
+
+  ptr = malloc(0);
+  printf("malloc(0) ptr is %p\n", ptr);
+
+  printf("after malloc...");
+  getchar();
 
   size_t size = 0; 
 
 #ifdef __APPLE__
-  #include <malloc/malloc.h>
   size =  malloc_size(ptr);
-//#elif __FreeBSD__
-//  #include <malloc_np.h>
-//  size = malloc_usable_size(ptr);
-//#elif __NetBSD__
-//  #include <malloc_np.h>
-//  size = malloc_usable_size(ptr);
-#elif __linux__
-  #include <malloc.h>
-  printf("malloc usable size for linux\n");
+#endif
+
+#ifdef __FreeBSD__
+  size = malloc_usable_size(ptr);
+#endif
+
+#ifdef __linux__
   size = malloc_usable_size(ptr);
 #endif
 
