@@ -41,8 +41,8 @@ int main()
   ptr = malloc(0);
   printf("malloc(0) ptr is %p\n", ptr);
 
-  printf("after malloc...");
-  getchar();
+  //printf("after malloc...");
+  //getchar();
 
   size_t size = 0; 
 
