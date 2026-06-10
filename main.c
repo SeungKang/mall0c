@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <unistd.h>
 
 #ifdef __APPLE__
   #include <malloc/malloc.h>
@@ -20,7 +21,7 @@ void read_16_bytes(void *ptr) {
 
     // Read and print each byte
     for (int i = 0; i < 16; i++) {
-        printf("Byte %d: 0x%02X\n", i, byte_ptr[i]);
+        fprintf(stderr,"Byte %d: 0x%02X\n", i, byte_ptr[i]);
     }
 }
 
@@ -30,18 +31,18 @@ int main()
 
   void *ptr;
   ptr = malloc(10);
-  printf("malloc(10) ptr is %p\n", ptr);
+  fprintf(stderr,"malloc(10) ptr is %p\n", ptr);
 
   ptr = malloc(0);
-  printf("malloc(0) ptr is %p\n", ptr);
+  fprintf(stderr,"malloc(0) ptr is %p\n", ptr);
 
   ptr = malloc(10);
-  printf("malloc(10) ptr is %p\n", ptr);
+  fprintf(stderr,"malloc(10) ptr is %p\n", ptr);
 
   ptr = malloc(0);
-  printf("malloc(0) ptr is %p\n", ptr);
+  fprintf(stderr,"malloc(0) ptr is %p\n", ptr);
 
-  //printf("after malloc...");
+  //fprintf(stderr,"after malloc...");
   //getchar();
 
   size_t size = 0; 
@@ -58,13 +59,18 @@ int main()
   size = malloc_usable_size(ptr);
 #endif
 
-  printf("allocated size is %zu\n", size);
+  fprintf(stderr,"allocated size is %zu\n", size);
 
-  printf("writing to chunk\n");
+  fprintf(stderr,"writing to chunk\n");
   ((char *)ptr)[0] = 'A';
-  printf("wrote to chunk\n");
+  fprintf(stderr,"wrote to chunk\n");
 
-  read_16_bytes(ptr);
+  //read_16_bytes(ptr);
+
+  printf("%d\n",getpid());
+
+  fprintf(stderr,"pausing...");
+  pause();
 
   return 0;
 }

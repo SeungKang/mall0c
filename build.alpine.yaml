@@ -6,4 +6,4 @@ tasks:
   - build: |
       cd mall0c
       gcc main.c
-      ./a.out
+      ./a.out | ( read pid && cat "/proc/$pid/maps" ; kill "$pid" )
