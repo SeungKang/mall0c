@@ -1,5 +1,16 @@
 # mall0c research
 
+The `malloc` function allocates a chunk of memory in C programs for storing
+variables and complex data structures. malloc takes a single input: the
+size of the chunk to allocate in bytes. But what happens when you ask for
+zero bytes of memory?
+
+This repository contains a test program and notes about what happens
+when `malloc(0)` is executed. For more information, refer to our
+[blog post][blog-post].
+
+[blog-post]: https://shonk.sh/posts/malloc-zero/
+
 ## observations
 
 - watched [billy's video](https://www.youtube.com/watch?v=nPuU_9Kbb5o&t=416s)
